@@ -9,11 +9,11 @@ const initialState = {
 const authSlice = createSlice({
     name : auth,
     initialState,
-    reducer : {
+    reducers : {
         setUser:(state,action)=>{
-
-        }
-    }
+            
+        },
+    },
 
 })
 
