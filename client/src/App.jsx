@@ -1,6 +1,8 @@
 
 import './App.css'
 import AuthLayout from './components/auth/layout'
+import AuthLogin from './pages/auth/login'
+import AuthRegister from './pages/auth/register'
 
 function App() {
 
@@ -8,7 +10,10 @@ function App() {
     <div className='flex flex-col overflow-hidden bg-white'>
       <h1>Header Component</h1>
       <Routes>
-        <Route path="/auth" element={<AuthLayout/>}></Route>
+        <Route path="/auth" element={<AuthLayout/>}>
+          <Route path="login" element={<AuthLogin/>}></Route>
+          <Route path="register" element={<AuthRegister/>}></Route>
+        </Route>
       </Routes>
     </div>
   )
