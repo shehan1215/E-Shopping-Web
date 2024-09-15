@@ -1,7 +1,7 @@
-function AdminSidebar() {
+function AdminHeader() {
     return ( 
         <div>admin sidebar</div>
      );
 }
 
-export default AdminSidebar;
+export default AdminHeader;
