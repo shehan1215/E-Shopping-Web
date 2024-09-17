@@ -14,6 +14,7 @@ import ShopList from "./pages/shopping-view/listing";
 import ShopCheckout from "./pages/shopping-view/checkout";
 import ShopAccount from "./pages/shopping-view/account";
 import CheckAuth from "./components/common/check-auth";
+import UnauthPage from "./pages/unauth-page";
 
 function App() {
 
@@ -56,7 +57,8 @@ function App() {
           <Route path="checkout" element={<ShopCheckout />}/>
           <Route path="account" element={<ShopAccount />}/>
         </Route>
-        <Route path="*" element={<NotFound />}></Route>
+        <Route path="*" element={<NotFound />}/>
+        <Route path="/unauth-page" element={<UnauthPage />}/>
 
       </Routes>
     </div>
