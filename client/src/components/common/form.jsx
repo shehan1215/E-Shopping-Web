@@ -6,7 +6,7 @@ function CommonForm({formControls}) {
             <div className="flex flex-col gap-3">
                 {
                     formControls.map(controlItems=> <div className="grid w-full gap-1.5" key={controlItems.name}>
-                        <Label>{controlItems.label}</Label>
+                        <Label className="mb-1">{controlItems.label}</Label>
                     </div>)
                 }
             </div>
