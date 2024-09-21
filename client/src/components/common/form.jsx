@@ -1,3 +1,4 @@
+import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
@@ -12,6 +13,8 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
 
     function renderInputByComponentType (getControlItem){
         let element = null;
+        const value = formData[getControlItem.name] || '';
+
         switch(getControlItem.componentType){
             case types.INPUT:
                 element = (
@@ -20,12 +23,13 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                         placeholder={getControlItem.placeholder}
                         id={getControlItem.name}
                         type={getControlItem.type}
+                        value={value}
                     />
                 );
                 break;
                 case 'select':
                     element = (
-                        <Select>
+                        <Select value={value}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder={getControlItem.placeholder}/>
                             </SelectTrigger>
@@ -45,6 +49,7 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                                 name={getControlItem.name}
                                 placeholder={getControlItem.placeholder}
                                 id={getControlItem.id}
+                                value={value}
                             />
                         );
                         break;
@@ -65,7 +70,7 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
     }
 
     return ( 
-        <form>
+        <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-3">
                 {
                     formControls.map(controlItems=> <div className="grid w-full gap-1.5" key={controlItems.name}>
@@ -76,6 +81,7 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                     </div>)
                 }
             </div>
+            <Button type="submit" className="w-full mt-2">{buttonText || 'Submit'}</Button>
         </form>
     );
 }
