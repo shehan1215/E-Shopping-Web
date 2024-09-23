@@ -1,4 +1,5 @@
 import CommonForm from "@/components/common/form";
+import { registerFormControls } from "@/config";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -26,11 +27,11 @@ function AuthRegister() {
                 </p>
             </div>
             <CommonForm
-            formControls={registerFormControls}
-            buttonText={'Sign Up'}
-            formData={formData}
-            setformData={setFormData}
-            onSubmit={onSubmit}
+                formControls={registerFormControls}
+                buttonText={"Sign Up"}
+                formData={formData}
+                setformData={setFormData}
+                onSubmit={onSubmit}
             />
         </div>
      );
