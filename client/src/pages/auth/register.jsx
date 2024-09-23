@@ -12,6 +12,10 @@ function AuthRegister() {
 
     const [formData,setFormData] = useState(initialState)
 
+    function onSubmit(){
+
+    }
+
     return ( 
         <div className="w-full max-w-md mx-auto space-y-6">
             <div className="text-center">
@@ -21,7 +25,13 @@ function AuthRegister() {
                     Login</Link>
                 </p>
             </div>
-            <CommonForm/>
+            <CommonForm
+            formControls={registerFormControls}
+            buttonText={'Sign Up'}
+            formData={formData}
+            setformData={setFormData}
+            onSubmit={onSubmit}
+            />
         </div>
      );
 }
