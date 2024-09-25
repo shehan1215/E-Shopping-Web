@@ -1,7 +1,8 @@
 const express =  require('express');
 const mongoose =  require('mongoose');
 const cookieParser = require('cookie-parser');
-const cors = require('cors')
+const cors = require('cors');
+const authRouter = require('./routes/auth/auth-routes')
 
 mongoose.connect("mongodb+srv://kaushikashehan123:ACjPmIqQKUguUmG4@cluster0.kho1z.mongodb.net/")
 .then(()=>console.log('Database Conected Successed')).catch(error=>console.log(error)); 
