@@ -13,8 +13,8 @@ function AuthRegister() {
 
     const [formData,setFormData] = useState(initialState)
 
-    function onSubmit(){
-
+    function onSubmit(event){
+        event.preventDefault()
     }
 
     return ( 
