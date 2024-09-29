@@ -19,9 +19,12 @@ function AuthRegister() {
 
     function onSubmit(event){
         event.preventDefault();
-        dispatch(registerUser(formData)).then(()=>navigate('/auth/login'));
+        dispatch(registerUser(formData)).then((data)=>{
+            console.log(data);   
+        });
     }
-
+    console.log(formData);
+    
     return ( 
         <div className="w-full max-w-md mx-auto space-y-6">
             <div className="text-center">
