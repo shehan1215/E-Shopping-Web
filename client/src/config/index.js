@@ -11,7 +11,7 @@ export const registerFormControls = [
         label : 'Email',
         placeholder : 'Enter Your Email',
         componentType : 'input',
-        type : 'text',
+        type : 'email',
     },
     {
         name : 'password',

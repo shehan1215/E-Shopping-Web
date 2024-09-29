@@ -6,9 +6,9 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const initialState = {
-    userName : '',
-    email : '',
-    password : ''
+    userName : "",
+    email : "",
+    password : "",
 }
 
 function AuthRegister() {
@@ -35,11 +35,11 @@ function AuthRegister() {
                 </p>
             </div>
             <CommonForm
-                formControls={registerFormControls}
-                buttonText={"Sign Up"}
-                formData={formData}
-                setformData={setFormData}
-                onSubmit={onSubmit}
+            formControls={registerFormControls}
+            buttonText={"Sign Up"}
+            formData={formData}
+            setformData={setFormData}
+            onSubmit={onSubmit}
             />
         </div>
      );
