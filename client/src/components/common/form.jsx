@@ -9,7 +9,7 @@ const types = {
     SELECT:'select'
 }
 
-function CommonForm({formControls, formData, setformData, onSubmit, buttonText}) {
+function CommonForm({formControls, formData, setFormData, onSubmit, buttonText, isBtnDisabled,}) {
 
     function renderInputByComponentType (getControlItem){
         let element = null;
@@ -24,7 +24,7 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                         id={getControlItem.name}
                         type={getControlItem.type}
                         value={value}
-                        onChange={event=>setformData({
+                        onChange={event=>setFormData({
                             ...formData,
                             [getControlItem.name]: event.target.value,
                         })}
@@ -33,7 +33,7 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                 break;
                 case 'select':
                     element = (
-                        <Select onValueChange={(value)=>setformData({
+                        <Select onValueChange={(value)=>setFormData({
                             ...formData,
                             [getControlItem.name] : value
                         })} value={value}>
@@ -57,7 +57,7 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                                 placeholder={getControlItem.placeholder}
                                 id={getControlItem.id}
                                 value={value}
-                                onChange={event=>setformData({
+                                onChange={event=>setFormData({
                                     ...formData,
                                     [getControlItem.name]: event.target.value,
                                 })}
@@ -73,7 +73,7 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                             id={getControlItem.name}
                             type={getControlItem.type}
                             value={value}
-                            onChange={event=>setformData({
+                            onChange={event=>setFormData({
                                 ...formData,
                                 [getControlItem.name]: event.target.value,
                             })}
@@ -94,10 +94,10 @@ function CommonForm({formControls, formData, setformData, onSubmit, buttonText})
                         {
                             renderInputByComponentType(controlItems)
                         }
-                    </div>)
-                }
+                    </div>
+                    )}
             </div>
-            <Button type="submit" className="w-full mt-2">{buttonText || 'Submit'}</Button>
+            <Button disabled={isBtnDisabled} type="submit" className="w-full mt-2">{buttonText || 'Submit'}</Button>
         </form>
     );
 }
