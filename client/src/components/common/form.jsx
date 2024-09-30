@@ -13,10 +13,10 @@ function CommonForm({formControls, formData, setFormData, onSubmit, buttonText, 
 
     function renderInputByComponentType (getControlItem){
         let element = null;
-        const value = formData[getControlItem.name] || '';
+        const value = formData[getControlItem.name] || "";
 
         switch(getControlItem.componentType){
-            case types.INPUT:
+            case "input":
                 element = (
                     <Input
                         name={getControlItem.name}

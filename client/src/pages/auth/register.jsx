@@ -1,4 +1,5 @@
-import CommonForm from "@/components/common/form";
+
+import CommonForm from "@/components/common/form.jsx";
 import { registerFormControls } from "@/config";
 import { registerUser } from "@/store/auth-slice";
 import { useState } from "react";
@@ -9,7 +10,7 @@ const initialState = {
     userName : "",
     email : "",
     password : "",
-}
+};
 
 function AuthRegister() {
     const [formData, setFormData] = useState(initialState);
