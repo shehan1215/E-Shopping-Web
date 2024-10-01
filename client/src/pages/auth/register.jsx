@@ -7,10 +7,10 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const initialState = {
-    userName : "",
-    email : "",
-    password : "",
-};
+    userName: "",
+    email: "",
+    password: "",
+  };
 
 function AuthRegister() {
     const [formData, setFormData] = useState(initialState);
@@ -35,11 +35,11 @@ function AuthRegister() {
                 </p>
             </div>
             <CommonForm
-            formControls={registerFormControls}
-            buttonText={"Sign Up"}
-            formData={formData}
-            setFormData={setFormData}
-            onSubmit={onSubmit}
+                formControls={registerFormControls}
+                buttonText={"Sign Up"}
+                formData={formData}
+                setFormData={setFormData}
+                onSubmit={onSubmit}
             />
         </div>
      );

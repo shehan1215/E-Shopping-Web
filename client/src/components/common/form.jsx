@@ -4,14 +4,9 @@ import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 
-const types = {
-    INPUT:'input',
-    SELECT:'select'
-}
+function CommonForm({formControls, formData, setFormData, onSubmit, buttonText,}) {
 
-function CommonForm({formControls, formData, setFormData, onSubmit, buttonText, isBtnDisabled,}) {
-
-    function renderInputByComponentType (getControlItem){
+    function renderInputsByComponentType (getControlItem){
         let element = null;
         const value = formData[getControlItem.name] || "";
 
@@ -19,66 +14,80 @@ function CommonForm({formControls, formData, setFormData, onSubmit, buttonText, 
             case "input":
                 element = (
                     <Input
-                        name={getControlItem.name}
-                        placeholder={getControlItem.placeholder}
-                        id={getControlItem.name}
-                        type={getControlItem.type}
-                        value={value}
-                        onChange={event=>setFormData({
-                            ...formData,
-                            [getControlItem.name]: event.target.value,
-                        })}
-                    />
+                    name={getControlItem.name}
+                    placeholder={getControlItem.placeholder}
+                    id={getControlItem.name}
+                    type={getControlItem.type}
+                    value={value}
+                    onChange={(event) =>
+                      setFormData({
+                        ...formData,
+                        [getControlItem.name]: event.target.value,
+                      })
+                    }
+                  />
                 );
                 break;
-                case 'select':
+                case "select":
                     element = (
-                        <Select onValueChange={(value)=>setFormData({
+                      <Select
+                        onValueChange={(value) =>
+                          setFormData({
                             ...formData,
-                            [getControlItem.name] : value
-                        })} value={value}>
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder={getControlItem.placeholder}/>
+                            [getControlItem.name]: value,
+                          })
+                        }
+                        value={value}
+                      >
+
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder={getControlItem.label} />
                             </SelectTrigger>
                             <SelectContent>
-                                {
-                                    getControlItem.options &&
-                                    getControlItem.options.length > 0 ?
-                                    getControlItem.options.map(optionItem=> <SelectItem key={optionItem.id} value={optionItem.id}>{optionItem.label}</SelectItem>) : null
-                                }
+                            {getControlItem.options && getControlItem.options.length > 0
+                                ? getControlItem.options.map((optionItem) => (
+                                    <SelectItem key={optionItem.id} value={optionItem.id}>
+                                    {optionItem.label}
+                                    </SelectItem>
+                                ))
+                                : null}
                             </SelectContent>
                         </Select>
-                    );
+                        );
                     break;
-                    case 'textarea':
+                    case "textarea":
                         element = (
-                            <Textarea
-                                name={getControlItem.name}
-                                placeholder={getControlItem.placeholder}
-                                id={getControlItem.id}
-                                value={value}
-                                onChange={event=>setFormData({
-                                    ...formData,
-                                    [getControlItem.name]: event.target.value,
-                                })}
-                            />
+                          <Textarea
+                            name={getControlItem.name}
+                            placeholder={getControlItem.placeholder}
+                            id={getControlItem.id}
+                            value={value}
+                            onChange={(event) =>
+                              setFormData({
+                                ...formData,
+                                [getControlItem.name]: event.target.value,
+                              })
+                            }
+                          />
                         );
                         break;
 
                 default:
                     element = (
                         <Input
-                            name={getControlItem.name}
-                            placeholder={getControlItem.placeholder}
-                            id={getControlItem.name}
-                            type={getControlItem.type}
-                            value={value}
-                            onChange={event=>setFormData({
-                                ...formData,
-                                [getControlItem.name]: event.target.value,
-                            })}
+                          name={getControlItem.name}
+                          placeholder={getControlItem.placeholder}
+                          id={getControlItem.name}
+                          type={getControlItem.type}
+                          value={value}
+                          onChange={(event) =>
+                            setFormData({
+                              ...formData,
+                              [getControlItem.name]: event.target.value,
+                            })
+                          }
                         />
-                    );
+                      );
                 break;
             
         }
@@ -88,16 +97,14 @@ function CommonForm({formControls, formData, setFormData, onSubmit, buttonText, 
     return ( 
         <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-3">
-                {
-                    formControls.map(controlItems=> <div className="grid w-full gap-1.5" key={controlItems.name}>
-                        <Label className="mb-1">{controlItems.label}</Label>
-                        {
-                            renderInputByComponentType(controlItems)
-                        }
+                {formControls.map((controlItem) => (
+                    <div className="grid w-full gap-1.5" key={controlItem.name}>
+                        <Label className="mb-1">{controlItem.label}</Label>
+                        {renderInputsByComponentType(controlItem)}
                     </div>
-                    )}
+            ))}
             </div>
-            <Button disabled={isBtnDisabled} type="submit" className="w-full mt-2">{buttonText || 'Submit'}</Button>
+            <Button type="submit" className="w-full mt-2">{buttonText || 'Submit'}</Button>
         </form>
     );
 }
