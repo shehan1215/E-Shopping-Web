@@ -4,7 +4,6 @@ const User = require('../../models/User')
 
 const registerUser = async(req, res)=>{
     const {userName, email, password} = req.body;
-
     try {
         const checkUser = await User.findOne({email});
         if(checkUser) return res.json({
@@ -17,7 +16,6 @@ const registerUser = async(req, res)=>{
             email,
             password : hashPassword
         }); 
-
         await newUser.save();
         res.status(200).json({
             success: true,
@@ -31,7 +29,6 @@ const registerUser = async(req, res)=>{
         });
     }
 }
-
 const login = async(req, res)=>{
     const {email, password} = req.body;
     try {
@@ -44,6 +41,4 @@ const login = async(req, res)=>{
         });
     }
 }
-
-
 module.exports = {registerUser,login}
