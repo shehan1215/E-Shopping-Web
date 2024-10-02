@@ -11,11 +11,12 @@ const registerUser = async(req, res)=>{
             userName,
             email,
             password : hashPassword
-        })
-        await newUser.save()
+        }); 
+
+        await newUser.save();
         res.status(200).json({
-            success : true,
-            message : "register successed",
+            success: true,
+            message: "User Register Success",
         });
     } catch (e) {
         console.log(e);
@@ -39,4 +40,4 @@ const login = async(req, res)=>{
 }
 
 
-module.exports = {registerUser}
+module.exports = {registerUser,login}
