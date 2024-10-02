@@ -6,6 +6,11 @@ const registerUser = async(req, res)=>{
     const {userName, email, password} = req.body;
 
     try {
+        const checkUser = await User.findOne({email});
+        if(checkUser) return res.json({
+            success: false,
+            message: "You are already registered with this email"
+        });
         const hashPassword = await bcrypt.hash(password, 12);
         const newUser = new User({
             userName,
@@ -28,6 +33,7 @@ const registerUser = async(req, res)=>{
 }
 
 const login = async(req, res)=>{
+    const {email, password} = req.body;
     try {
         
     } catch (e) {
