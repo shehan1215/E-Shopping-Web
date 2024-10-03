@@ -32,7 +32,16 @@ const registerUser = async(req, res)=>{
 const login = async(req, res)=>{
     const {email, password} = req.body;
     try {
-        
+        const checkUser = await User.findOne({email});
+        if(!checkUser) return res.json({
+            success: false,
+            message: "User Not Registered"
+        })
+        const checkPasswordMatch = await bcrypt.compare(password, checkUser.password);
+        if(!checkPasswordMatch) return res.json({
+            success: false,
+            message: "Incorrect password entered! please try again"
+        })
     } catch (e) {
         console.log(e);
         res.status(500).json({
