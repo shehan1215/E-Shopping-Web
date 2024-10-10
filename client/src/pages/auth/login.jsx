@@ -17,10 +17,10 @@ function AuthLogin() {
 
     function onSubmit(event){
         event.preventDefault();
-        dispatch(loginUser(formData).then((data) => {
+        dispatch(loginUser(formData)).then((data)=>{
             console.log(data);
             
-        }))
+        })
     }
 
     return ( 
