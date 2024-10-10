@@ -42,6 +42,21 @@ const login = async(req, res)=>{
             success: false,
             message: "Incorrect password entered! please try again"
         })
+
+        const token = jwt.sign({
+            id:checkUser._id, role:checkUser.role, email:checkUser.email
+        }, 'CLIENT_SECRET_KEY',{expiresIn : '60m'});
+
+        res.cookie('token',token,{httpOnly:true, secure:false}).json({
+            success : true,
+            message: 'Logged in successfully',
+            user : {
+                email : checkUser.email,
+                role : checkUser.role,
+                id : checkUser._id
+            }
+        })
+
     } catch (e) {
         console.log(e);
         res.status(500).json({
