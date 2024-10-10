@@ -29,7 +29,7 @@ const registerUser = async(req, res)=>{
         });
     }
 }
-const login = async(req, res)=>{
+const loginUser = async(req, res)=>{
     const {email, password} = req.body;
     try {
         const checkUser = await User.findOne({email});
@@ -65,4 +65,4 @@ const login = async(req, res)=>{
         });
     }
 }
-module.exports = {registerUser,login}
+module.exports = {registerUser,loginUser}
