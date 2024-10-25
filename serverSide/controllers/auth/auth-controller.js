@@ -65,4 +65,11 @@ const loginUser = async(req, res)=>{
         });
     }
 }
-module.exports = {registerUser,loginUser}
+    //LogOut section handles when clear the token
+    const logout = (req,res)=>{
+        res.clearCookie('token').json({
+            success:true,
+            message:'Logged out'
+        })
+    }
+module.exports = {registerUser,loginUser,logout}
